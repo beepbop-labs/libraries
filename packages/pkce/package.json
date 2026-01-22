@@ -14,11 +14,13 @@
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
+    "@bb-labs/bldr": "workspace:*",
     "@bb-labs/tsconfigs": "^0.0.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/node": "^25.0.10"
+    "@types/node": "^25.0.10",
+    "tsc-alias": "^1.8.16"
   },
   "peerDependencies": {
     "typescript": "^5"

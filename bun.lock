@@ -35,11 +35,13 @@
       "name": "@bb-labs/pkce",
       "version": "0.0.0",
       "dependencies": {
+        "@bb-labs/bldr": "latets",
         "@bb-labs/tsconfigs": "^0.0.2",
       },
       "devDependencies": {
         "@types/bun": "latest",
         "@types/node": "^25.0.10",
+        "tsc-alias": "^1.8.16",
       },
       "peerDependencies": {
         "typescript": "^5",
