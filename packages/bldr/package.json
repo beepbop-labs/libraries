@@ -20,12 +20,12 @@
     "@types/node": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5",
+    "tsc-alias": "^1.8.8"
   },
   "dependencies": {
     "@bb-labs/tsconfigs": "^0.0.1",
     "blessed": "^0.1.81",
-    "chokidar": "^5.0.0",
-    "tsc-alias": "^1.8.8"
+    "chokidar": "^5.0.0"
   }
 }

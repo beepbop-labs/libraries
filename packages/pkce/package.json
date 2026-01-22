@@ -1,0 +1,26 @@
+{
+  "name": "@bb-labs/pkce",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "pack": "npm run build && rm -rf archive && mkdir -p archive && bun pm pack --destination ./archive && find ./archive -name '*.tgz' -exec mv {} ./archive/archive7.tgz \\;"
+  },
+  "dependencies": {
+    "@bb-labs/tsconfigs": "^0.0.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.0.10"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
