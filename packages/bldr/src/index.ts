@@ -168,15 +168,15 @@ async function main() {
 
   console.log(
     [
-      `\n[tsbuild] project: ${rel(cwd, tsconfigPath)}`,
-      `[tsbuild] rootDir : ${rel(cwd, rootDirAbs)}`,
-      `[tsbuild] outDir  : ${rel(cwd, outDirAbs)}`,
-      `[tsbuild] mode    : ${args.watch ? "watch" : "build"}\n`,
+      `\n[bldr] project: ${rel(cwd, tsconfigPath)}`,
+      `[bldr] rootDir : ${rel(cwd, rootDirAbs)}`,
+      `[bldr] outDir  : ${rel(cwd, outDirAbs)}`,
+      `[bldr] mode    : ${args.watch ? "watch" : "build"}\n`,
     ].join("\n"),
   );
 
   // Clean the output directory first
-  console.log(`[tsbuild] cleaning output directory...`);
+  console.log(`[bldr] cleaning output directory...`);
   await rmIfExists(outDirAbs);
 
   const tscArgs = ["-p", tsconfigPath];
@@ -189,7 +189,7 @@ async function main() {
       await run("tsc-alias", aliasArgs, cwd);
     } catch (error) {
       // Clean up partial output on build failure
-      console.error(`[tsbuild] build failed, cleaning output directory...`);
+      console.error(`[bldr] build failed, cleaning output directory...`);
       await rmIfExists(outDirAbs);
       throw error;
     }
@@ -202,9 +202,9 @@ async function main() {
     await run("tsc", tscArgs, cwd);
     await run("tsc-alias", aliasArgs, cwd);
   } catch (error) {
-    console.error(`[tsbuild] initial build failed: ${error}`);
+    console.error(`[bldr] initial build failed: ${error}`);
     // Continue in watch mode even if initial build fails
-    console.log(`[tsbuild] continuing in watch mode...`);
+    console.log(`[bldr] continuing in watch mode...`);
   }
 
   // 2) Start watchers
@@ -254,7 +254,7 @@ async function main() {
         }
       });
     } catch (error) {
-      console.error(`[tsbuild] error handling file deletion ${absPath}: ${error}`);
+      console.error(`[bldr] error handling file deletion ${absPath}: ${error}`);
     }
   });
 
@@ -262,31 +262,31 @@ async function main() {
     try {
       await cleaner.removeOutDirForSourceDir(absDir);
     } catch (error) {
-      console.error(`[tsbuild] error handling directory deletion ${absDir}: ${error}`);
+      console.error(`[bldr] error handling directory deletion ${absDir}: ${error}`);
     }
   });
 
   // TypeScript compiler handles additions and changes automatically
 
   const shutdown = async () => {
-    console.log("\n[tsbuild] shutting down...");
+    console.log("\n[bldr] shutting down...");
     try {
       srcWatcher.close();
-      console.log("[tsbuild] src watcher closed");
+      console.log("[bldr] src watcher closed");
     } catch (error) {
-      console.error(`[tsbuild] error closing src watcher: ${error}`);
+      console.error(`[bldr] error closing src watcher: ${error}`);
     }
     try {
       tscWatch.kill();
-      console.log("[tsbuild] tsc watcher killed");
+      console.log("[bldr] tsc watcher killed");
     } catch (error) {
-      console.error(`[tsbuild] error killing tsc watcher: ${error}`);
+      console.error(`[bldr] error killing tsc watcher: ${error}`);
     }
     try {
       aliasWatch.kill();
-      console.log("[tsbuild] tsc-alias watcher killed");
+      console.log("[bldr] tsc-alias watcher killed");
     } catch (error) {
-      console.error(`[tsbuild] error killing tsc-alias watcher: ${error}`);
+      console.error(`[bldr] error killing tsc-alias watcher: ${error}`);
     }
     process.exit(0);
   };

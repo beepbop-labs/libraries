@@ -12,7 +12,7 @@
     },
     "packages/bldr": {
       "name": "@bb-labs/bldr",
-      "version": "0.0.1",
+      "version": "0.0.0",
       "bin": {
         "bldr": "./dist/index.js",
       },
