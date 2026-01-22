@@ -5,7 +5,7 @@ A TypeScript build tool with watch mode, automatic dist synchronization, and spl
 ## Installation
 
 ```bash
-bun add -d @bb-labs/bldr
+bun add -d @bb-labs/bldr tsc-alias typescript
 ```
 
 ## Usage
