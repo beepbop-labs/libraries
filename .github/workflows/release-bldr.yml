@@ -1,4 +1,4 @@
-name: Release - bldr
+name: release-bldr
 
 on:
   workflow_dispatch:

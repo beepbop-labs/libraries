@@ -1,4 +1,4 @@
-name: Release - tsconfigs
+name: release-tsconfigs
 
 on:
   workflow_dispatch:
