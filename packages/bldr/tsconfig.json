@@ -6,8 +6,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "paths": {
-      "@/*": ["./src/*"],
-      "@test-src/*": ["test/test-src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]
