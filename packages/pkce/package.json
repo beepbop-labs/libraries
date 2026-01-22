@@ -9,8 +9,8 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "build": "bunx bldr",
-    "dev": "bunx bldr -w",
+    "build": "bunx @bb-labs/bldr",
+    "dev": "bunx @bb-labs/bldr -w",
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
