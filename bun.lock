@@ -20,7 +20,6 @@
         "@bb-labs/tsconfigs": "^0.0.1",
         "blessed": "^0.1.81",
         "chokidar": "^5.0.0",
-        "tsc-alias": "^1.8.8",
       },
       "devDependencies": {
         "@types/blessed": "^0.1.27",
@@ -28,6 +27,7 @@
         "@types/node": "latest",
       },
       "peerDependencies": {
+        "tsc-alias": "^1.8.8",
         "typescript": "^5",
       },
     },
@@ -38,6 +38,7 @@
         "@bb-labs/tsconfigs": "^0.0.2",
       },
       "devDependencies": {
+        "@bb-labs/bldr": "0.0.11",
         "@types/bun": "latest",
         "@types/node": "^25.0.10",
       },
@@ -168,11 +169,15 @@
 
     "@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
 
+    "@bb-labs/pkce/@bb-labs/bldr": ["@bb-labs/bldr@0.0.11", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-vOyIqPoRiFOBWIpfj8scHNpyWAQTPSpp1ba+OQ5DLgSb3Q6Vn9n7XjkQ+GjlxbwHFKG4kUWXy1MjpTAIZjNixA=="],
+
     "@bb-labs/pkce/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.2", "", {}, "sha512-7O11y5tpLJmV+3FW5e8ley0IiH6kWWfs5UvAKunSDJPkwgicxZH6QB6WzztFJ5lQHrK8srKvFXaJEoC8eWVdxQ=="],
 
     "bun-types/@types/node": ["@types/node@22.19.7", "", { "dependencies": { "undici-types": "~6.21.0" } }, "sha512-MciR4AKGHWl7xwxkBa6xUGxQJ4VBOmPTF7sL+iGzuahOFaO0jHCsuEfS80pan1ef4gWId1oWOweIhrDEYLuaOw=="],
 
     "tsc-alias/chokidar": ["chokidar@3.6.0", "", { "dependencies": { "anymatch": "~3.1.2", "braces": "~3.0.2", "glob-parent": "~5.1.2", "is-binary-path": "~2.1.0", "is-glob": "~4.0.1", "normalize-path": "~3.0.0", "readdirp": "~3.6.0" }, "optionalDependencies": { "fsevents": "~2.3.2" } }, "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw=="],
+
+    "@bb-labs/pkce/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
 
     "bun-types/@types/node/undici-types": ["undici-types@6.21.0", "", {}, "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ=="],
 

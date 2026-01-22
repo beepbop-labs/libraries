@@ -9,14 +9,15 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "npm run clean && tsc -p tsconfig.json",
-    "pack": "npm run build && rm -rf archive && mkdir -p archive && bun pm pack --destination ./archive && find ./archive -name '*.tgz' -exec mv {} ./archive/archive7.tgz \\;"
+    "build": "bldr",
+    "dev": "bldr -w",
+    "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
     "@bb-labs/tsconfigs": "^0.0.2"
   },
   "devDependencies": {
+    "@bb-labs/bldr": "0.0.11",
     "@types/bun": "latest",
     "@types/node": "^25.0.10"
   },

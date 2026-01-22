@@ -9,7 +9,7 @@ export function run(cmd: string, args: string[], cwd: string): Promise<void> {
     const p = spawn(cmd, args, {
       cwd,
       stdio: ["inherit", "pipe", "pipe"],
-      shell: process.platform === "win32",
+      shell: true,
       env: { ...process.env, FORCE_COLOR: "1" },
     });
 
@@ -49,7 +49,7 @@ export function spawnLongRunning(cmd: string, args: string[], cwd: string): Chil
   return spawn(cmd, args, {
     cwd,
     stdio: ["inherit", "pipe", "pipe"],
-    shell: process.platform === "win32",
+    shell: true,
     env: { ...process.env, FORCE_COLOR: "1" },
   });
 }
