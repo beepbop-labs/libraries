@@ -6,6 +6,11 @@
     "./lib.json": "./src/lib.json",
     "./app.json": "./src/app.json"
   },
+  "scripts": {
+    "build": "bldr",
+    "dev": "bldr -w",
+    "clean": "rm -rf node_modules bun.lock dist"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   }
