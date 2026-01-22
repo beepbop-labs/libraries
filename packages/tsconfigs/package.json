@@ -7,8 +7,7 @@
     "./app.json": "./src/app.json"
   },
   "scripts": {
-    "build": "bldr",
-    "dev": "bldr -w",
+    "build": "",
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "devDependencies": {

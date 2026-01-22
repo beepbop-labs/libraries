@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsc",
     "postbuild": "chmod +x dist/index.js",
-    "test:build": "node dist/index.js --project test-src/tsconfig.json",
-    "test:watch": "node dist/index.js --watch --project test-src/tsconfig.json",
+    "test:build": "node dist/index.js --project test/tsconfig.json",
+    "test:watch": "node dist/index.js --watch --project test/tsconfig.json",
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "devDependencies": {

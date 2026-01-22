@@ -35,7 +35,7 @@
       "name": "@bb-labs/pkce",
       "version": "0.0.0",
       "dependencies": {
-        "@bb-labs/bldr": "^0.0.13",
+        "@bb-labs/bldr": "0.0.14",
         "@bb-labs/tsconfigs": "^0.0.2",
       },
       "devDependencies": {
@@ -170,7 +170,7 @@
 
     "@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
 
-    "@bb-labs/pkce/@bb-labs/bldr": ["@bb-labs/bldr@0.0.13", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-/4gPirdNAd+9ScitixRgxSR1jwTH7wUkeLxeE4IG6mFaxlOzzPcrS0v83DYaSLkzhxqxqpdN75OxBrJz9J8Asg=="],
+    "@bb-labs/pkce/@bb-labs/bldr": ["@bb-labs/bldr@0.0.14", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-KF3QyO4rMCf0YADecWf+SvGveyiSjqZQl+KfnQEtk/fS6GOsuSyutjL3xqg1gEcmS897VTXNxorgCnkEwYY/ow=="],
 
     "@bb-labs/pkce/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.2", "", {}, "sha512-7O11y5tpLJmV+3FW5e8ley0IiH6kWWfs5UvAKunSDJPkwgicxZH6QB6WzztFJ5lQHrK8srKvFXaJEoC8eWVdxQ=="],
 

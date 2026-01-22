@@ -5,7 +5,7 @@ A TypeScript build tool with watch mode, automatic dist synchronization, and spl
 ## Installation
 
 ```bash
-bun add -d @bb-labs/bldr tsc-alias typescript
+bun add -d @bb-labs/bldr
 ```
 
 ## Usage
@@ -31,16 +31,6 @@ bun add -d @bb-labs/bldr tsc-alias typescript
 - **Page Up/Down**: Scroll the main panel by larger increments
 - **Ctrl+L**: Jump all panels to the bottom
 - **Ctrl+C/Escape/Q**: Exit the application
-
-## Testing
-
-Run `bun run test:dev` to test the build tool with the included test files in `test-src/`. This will:
-
-- Build files from `test-src/` to `test-dist/`
-- Show the split-terminal UI with real-time updates
-- Watch for changes and rebuild automatically
-
-Add or modify files in `test-src/` to see the build tool in action!
 
 ## Features
 

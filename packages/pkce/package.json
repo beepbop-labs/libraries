@@ -14,7 +14,7 @@
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
-    "@bb-labs/bldr": "^0.0.13",
+    "@bb-labs/bldr": "0.0.14",
     "@bb-labs/tsconfigs": "^0.0.2"
   },
   "devDependencies": {
