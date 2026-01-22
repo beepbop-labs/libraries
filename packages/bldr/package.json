@@ -1,6 +1,7 @@
 {
   "name": "@bb-labs/bldr",
   "version": "0.0.0",
+  "type": "module",
   "bin": {
     "bldr": "./dist/index.js"
   },
@@ -10,8 +11,8 @@
   "scripts": {
     "build": "tsc",
     "postbuild": "chmod +x dist/index.js",
-    "test:build": "bun run src/index.ts --project test-src/tsconfig.json",
-    "test:watch": "bun run src/index.ts --watch --project test-src/tsconfig.json"
+    "test:build": "node dist/index.js --project test-src/tsconfig.json",
+    "test:watch": "node dist/index.js --watch --project test-src/tsconfig.json"
   },
   "devDependencies": {
     "@types/blessed": "^0.1.27",

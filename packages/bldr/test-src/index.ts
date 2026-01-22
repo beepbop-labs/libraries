@@ -13,4 +13,6 @@ const user: User = {
 
 console.log("Created user:", user);
 
+// Introduce a TypeScript error - calling greet with wrong type
+
 // Test hot reloading by editing this file!
