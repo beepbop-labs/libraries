@@ -14,5 +14,6 @@ const user: User = {
 console.log("Created user:", user);
 
 // Introduce a TypeScript error - calling greet with wrong type
+console.log(greet(123)); // Error: Argument of type 'number' is not assignable to parameter of type 'string'
 
 // Test hot reloading by editing this file!

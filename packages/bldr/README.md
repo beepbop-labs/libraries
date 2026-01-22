@@ -1,4 +1,4 @@
-# bldr
+## Introduction
 
 A TypeScript build tool with watch mode, automatic dist synchronization, and split-terminal UI.
 
@@ -21,8 +21,16 @@ bun add -d @bb-labs/builder typescript tsc-alias
 
 ## Options
 
-- `--watch`, `-w`: Watch mode with split-terminal UI showing tsc, tsc-alias, and bldr outputs side by side
+- `--watch`, `-w`: Watch mode with split-terminal UI showing tsc, tsc-alias, and bldr outputs
 - `--project`, `-p <path>`: Custom tsconfig.json path
+
+## Controls (Watch Mode)
+
+- **Mouse Wheel**: Scroll individual panels when hovering over them
+- **Arrow Keys**: Scroll the main panel up/down
+- **Page Up/Down**: Scroll the main panel by larger increments
+- **Ctrl+L**: Jump all panels to the bottom
+- **Ctrl+C/Escape/Q**: Exit the application
 
 ## Testing
 
