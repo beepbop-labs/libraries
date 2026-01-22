@@ -1,0 +1,27 @@
+{
+  "name": "@bb-labs/zod-env",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bldr",
+    "dev": "bldr -w",
+    "clean": "rm -rf node_modules bun.lock dist"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^25.0.3",
+    "tsc-alias": "^1.8.16",
+    "zod": "^4"
+  },
+  "peerDependencies": {
+    "typescript": "^5",
+    "zod": "^4"
+  },
+  "dependencies": {
+    "@bb-labs/bldr": "^0.0.15",
+    "@bb-labs/tsconfigs": "^0.0.3"
+  }
+}
