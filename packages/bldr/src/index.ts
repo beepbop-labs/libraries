@@ -3,6 +3,7 @@ import { spawn } from "node:child_process";
 import path from "node:path";
 import fs from "node:fs";
 import chokidar from "chokidar";
+import blessed from "blessed";
 
 // We use the TypeScript API to correctly resolve tsconfig + "extends".
 import ts from "typescript";
@@ -94,9 +95,10 @@ function run(cmd: string, args: string[], cwd: string): Promise<void> {
 function spawnLongRunning(cmd: string, args: string[], cwd: string) {
   const p = spawn(cmd, args, {
     cwd,
-    stdio: "inherit",
+    stdio: ["inherit", "pipe", "pipe"], // pipe stdout and stderr
     shell: process.platform === "win32",
   });
+
   return p;
 }
 
@@ -166,6 +168,92 @@ async function main() {
   const rootDirAbs = path.isAbsolute(cfg.rootDir) ? cfg.rootDir : path.resolve(cfg.configDir, cfg.rootDir);
   const outDirAbs = path.isAbsolute(cfg.outDir) ? cfg.outDir : path.resolve(cfg.configDir, cfg.outDir);
 
+  // Create terminal UI only in watch mode
+  let screen: any, bldrBox: any, tscBox: any, aliasBox: any, logToBldr: any;
+
+  if (args.watch) {
+    screen = blessed.screen({
+      smartCSR: true,
+      title: "bldr - TypeScript Build Tool",
+    });
+
+    bldrBox = blessed.box({
+      top: 0,
+      left: 0,
+      width: "33%",
+      height: "100%",
+      label: " bldr ",
+      border: { type: "line" },
+      scrollable: true,
+      alwaysScroll: true,
+      scrollbar: { ch: " " },
+    });
+
+    tscBox = blessed.box({
+      top: 0,
+      left: "33%",
+      width: "34%",
+      height: "100%",
+      label: " tsc ",
+      border: { type: "line" },
+      scrollable: true,
+      alwaysScroll: true,
+      scrollbar: { ch: " " },
+    });
+
+    aliasBox = blessed.box({
+      top: 0,
+      left: "67%",
+      width: "33%",
+      height: "100%",
+      label: " tsc-alias ",
+      border: { type: "line" },
+      scrollable: true,
+      alwaysScroll: true,
+      scrollbar: { ch: " " },
+    });
+
+    screen.append(bldrBox);
+    screen.append(tscBox);
+    screen.append(aliasBox);
+
+    // Handle screen events
+    screen.key(["escape", "q", "C-c"], () => {
+      shutdown();
+    });
+
+    screen.key(["C-l"], () => {
+      bldrBox.setScrollPerc(100);
+      tscBox.setScrollPerc(100);
+      aliasBox.setScrollPerc(100);
+      screen.render();
+    });
+
+    // Create a function to log to the bldr box
+    logToBldr = (text: string) => {
+      bldrBox.insertBottom(text);
+      bldrBox.setScrollPerc(100);
+      screen.render();
+    };
+
+    // Override console.log and console.error for bldr messages
+    const originalLog = console.log;
+    const originalError = console.error;
+
+    console.log = (...args: any[]) => {
+      logToBldr(args.join(" "));
+      // Don't call originalLog to avoid double output
+    };
+
+    console.error = (...args: any[]) => {
+      logToBldr(args.join(" "));
+      // Don't call originalError to avoid double output
+    };
+
+    screen.render();
+  }
+
+  // Initial messages will now go to the bldr box via overridden console.log
   console.log(
     [
       `\n[bldr] project: ${rel(cwd, tsconfigPath)}`,
@@ -193,11 +281,12 @@ async function main() {
       await rmIfExists(outDirAbs);
       throw error;
     }
+    console.log(`[bldr] build completed successfully!`);
     return;
   }
 
   // Watch mode:
-  // 1) Do a clean initial pass so dist is correct immediately.
+  // 2) Do a clean initial pass so dist is correct immediately.
   try {
     await run("tsc", tscArgs, cwd);
     await run("tsc-alias", aliasArgs, cwd);
@@ -207,9 +296,64 @@ async function main() {
     console.log(`[bldr] continuing in watch mode...`);
   }
 
-  // 2) Start watchers
+  // 3) Start watchers
   const tscWatch = spawnLongRunning("tsc", [...tscArgs, "-w"], cwd);
   const aliasWatch = spawnLongRunning("tsc-alias", [...aliasArgs, "-w"], cwd);
+
+  // Pipe output to boxes
+  if (tscWatch.stdout) {
+    tscWatch.stdout.on("data", (data) => {
+      const text = data.toString().trim();
+      if (text) {
+        tscBox.insertBottom(text);
+        tscBox.setScrollPerc(100);
+        screen.render();
+      }
+    });
+  }
+
+  if (tscWatch.stderr) {
+    tscWatch.stderr.on("data", (data) => {
+      const text = data.toString().trim();
+      if (text) {
+        tscBox.insertBottom(text);
+        tscBox.setScrollPerc(100);
+        screen.render();
+      }
+    });
+  }
+
+  if (aliasWatch.stdout) {
+    aliasWatch.stdout.on("data", (data) => {
+      const text = data.toString().trim();
+      if (text) {
+        aliasBox.insertBottom(text);
+        aliasBox.setScrollPerc(100);
+        screen.render();
+      }
+    });
+  }
+
+  if (aliasWatch.stderr) {
+    aliasWatch.stderr.on("data", (data) => {
+      const text = data.toString().trim();
+      if (text) {
+        aliasBox.insertBottom(text);
+        aliasBox.setScrollPerc(100);
+        screen.render();
+      }
+    });
+  }
+
+  // If any child process errors or exits, shut down all processes
+  tscWatch.on("error", (error) => {
+    console.error(`[bldr] tsc watcher error: ${error}`);
+    shutdown();
+  });
+  aliasWatch.on("error", (error) => {
+    console.error(`[bldr] tsc-alias watcher error: ${error}`);
+    shutdown();
+  });
 
   // 3) dist sync watcher: remove stale outputs on deletes/dir deletes
   const cleaner = makeDistCleaner(rootDirAbs, outDirAbs);
@@ -269,14 +413,17 @@ async function main() {
   // TypeScript compiler handles additions and changes automatically
 
   const shutdown = async () => {
-    console.log("\n[bldr] shutting down...");
+    logToBldr("\n[bldr] shutting down...");
+
+    // Destroy screen
+    screen.destroy();
 
     // Close file watcher
     try {
       await srcWatcher.close();
-      console.log("[bldr] src watcher closed");
+      logToBldr("[bldr] src watcher closed");
     } catch (error) {
-      console.error(`[bldr] error closing src watcher: ${error}`);
+      logToBldr(`[bldr] error closing src watcher: ${error}`);
     }
 
     // Kill child processes
@@ -296,7 +443,7 @@ async function main() {
           }, 5000);
         }),
       );
-      console.log("[bldr] killing tsc watcher...");
+      logToBldr("[bldr] killing tsc watcher...");
     }
 
     if (!aliasWatch.killed) {
@@ -313,12 +460,12 @@ async function main() {
           }, 5000);
         }),
       );
-      console.log("[bldr] killing tsc-alias watcher...");
+      logToBldr("[bldr] killing tsc-alias watcher...");
     }
 
     // Wait for all child processes to exit
     await Promise.all(killPromises);
-    console.log("[bldr] all processes cleaned up");
+    logToBldr("[bldr] all processes cleaned up");
     process.exit(0);
   };
 

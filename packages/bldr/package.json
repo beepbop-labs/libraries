@@ -9,9 +9,12 @@
   ],
   "scripts": {
     "build": "tsc",
-    "postbuild": "chmod +x dist/index.js"
+    "postbuild": "chmod +x dist/index.js",
+    "test:build": "bun run src/index.ts --project test-src/tsconfig.json",
+    "test:watch": "bun run src/index.ts --watch --project test-src/tsconfig.json"
   },
   "devDependencies": {
+    "@types/blessed": "^0.1.27",
     "@types/bun": "latest",
     "@types/node": "latest"
   },
@@ -20,6 +23,7 @@
   },
   "dependencies": {
     "@bb-labs/tsconfigs": "^0.0.1",
+    "blessed": "^0.1.81",
     "chokidar": "^5.0.0",
     "tsc-alias": "^1.8.8"
   }

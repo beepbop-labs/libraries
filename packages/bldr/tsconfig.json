@@ -4,7 +4,11 @@
     "types": ["node"],
 
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@test-src/*": ["./test-src/*"]
+    }
   },
   "include": ["src"]
 }
