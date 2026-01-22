@@ -1,5 +1,4 @@
 import { spawn, spawnSync, type ChildProcess } from "node:child_process";
-import * as readline from "node:readline";
 
 /**
  * Checks if a command is available in the PATH.
@@ -7,25 +6,6 @@ import * as readline from "node:readline";
 function commandExists(cmd: string): boolean {
   const result = spawnSync("which", [cmd], { stdio: "pipe" });
   return result.status === 0;
-}
-
-/**
- * Prompts the user for yes/no input. Defaults to yes on empty input.
- */
-async function promptYesNo(question: string): Promise<boolean> {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  return new Promise((resolve) => {
-    rl.question(`${question} [Y/n]: `, (answer) => {
-      rl.close();
-      const normalized = answer.trim().toLowerCase();
-      // Empty or 'y' or 'yes' = true, anything else = false
-      resolve(normalized === "" || normalized === "y" || normalized === "yes");
-    });
-  });
 }
 
 /**
@@ -57,8 +37,7 @@ async function installDeps(deps: string[]): Promise<void> {
 
 /**
  * Checks if required dependencies (tsc, tsc-alias) are available.
- * If not, prompts the user to install them.
- * Returns true if dependencies are available, false if user declined to install.
+ * If not, automatically installs them.
  */
 export async function checkDependencies(): Promise<boolean> {
   const missing: string[] = [];
@@ -76,16 +55,8 @@ export async function checkDependencies(): Promise<boolean> {
   }
 
   console.log(`\n⚠️  Missing required dependencies: ${missing.join(", ")}`);
-
-  const shouldInstall = await promptYesNo("Would you like to install them now?");
-
-  if (shouldInstall) {
-    await installDeps(missing);
-    return true;
-  }
-
-  console.log(`\n❌ Please install missing dependencies manually:\n   bun add -d ${missing.join(" ")}\n`);
-  return false;
+  await installDeps(missing);
+  return true;
 }
 
 /**

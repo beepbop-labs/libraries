@@ -9,12 +9,12 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "build": "bunx @bb-labs/bldr",
-    "dev": "bunx @bb-labs/bldr -w",
+    "build": "bldr",
+    "dev": "bldr -w",
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
-    "@bb-labs/bldr": "workspace:*",
+    "@bb-labs/bldr": "^0.0.13",
     "@bb-labs/tsconfigs": "^0.0.2"
   },
   "devDependencies": {
