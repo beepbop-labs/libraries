@@ -1,0 +1,26 @@
+{
+  "name": "@bb-labs/bldr",
+  "version": "0.0.0",
+  "bin": {
+    "bldr": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "chmod +x dist/index.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@bb-labs/tsconfigs": "^0.0.1",
+    "chokidar": "^5.0.0",
+    "tsc-alias": "^1.8.8"
+  }
+}

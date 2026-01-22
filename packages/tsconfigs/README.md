@@ -1,15 +1,17 @@
-# tsconfigs
+## Introduction
 
-To install dependencies:
+Shared TypeScript configuration files for projects.
 
-```bash
-bun install
+## Configurations
+
+- `base.json` - Base configuration
+- `app.json` - For applications (extends base)
+- `lib.json` - For libraries (extends base)
+
+## Usage
+
+```json
+{
+  "extends": "@bb-labs/tsconfigs/base.json"
+}
 ```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.5. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.

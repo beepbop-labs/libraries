@@ -175,20 +175,37 @@ async function main() {
     ].join("\n"),
   );
 
+  // Clean the output directory first
+  console.log(`[tsbuild] cleaning output directory...`);
+  await rmIfExists(outDirAbs);
+
   const tscArgs = ["-p", tsconfigPath];
   const aliasArgs = ["-p", tsconfigPath];
 
   if (!args.watch) {
     // One-shot build: tsc -> tsc-alias
-    await run("tsc", tscArgs, cwd);
-    await run("tsc-alias", aliasArgs, cwd);
+    try {
+      await run("tsc", tscArgs, cwd);
+      await run("tsc-alias", aliasArgs, cwd);
+    } catch (error) {
+      // Clean up partial output on build failure
+      console.error(`[tsbuild] build failed, cleaning output directory...`);
+      await rmIfExists(outDirAbs);
+      throw error;
+    }
     return;
   }
 
   // Watch mode:
   // 1) Do a clean initial pass so dist is correct immediately.
-  await run("tsc", tscArgs, cwd);
-  await run("tsc-alias", aliasArgs, cwd);
+  try {
+    await run("tsc", tscArgs, cwd);
+    await run("tsc-alias", aliasArgs, cwd);
+  } catch (error) {
+    console.error(`[tsbuild] initial build failed: ${error}`);
+    // Continue in watch mode even if initial build fails
+    console.log(`[tsbuild] continuing in watch mode...`);
+  }
 
   // 2) Start watchers
   const tscWatch = spawnLongRunning("tsc", [...tscArgs, "-w"], cwd);
@@ -200,33 +217,78 @@ async function main() {
   const srcWatcher = chokidar.watch(rootDirAbs, {
     ignoreInitial: true,
     awaitWriteFinish: { stabilityThreshold: 100, pollInterval: 50 },
+    atomic: true, // Handle atomic writes (renames/moves) properly
+    interval: 100, // Poll interval for most files
+    binaryInterval: 300, // Poll interval for binary files
   });
 
+  // Queue for handling rapid operations to prevent race conditions
+  const operationQueue = new Map<string, Promise<void>>();
+  const MAX_CONCURRENT_OPERATIONS = 10;
+
+  async function queuedOperation(key: string, operation: () => Promise<void>) {
+    // Wait for any existing operation on this key
+    const existing = operationQueue.get(key);
+    if (existing) {
+      await existing;
+    }
+
+    // Limit concurrent operations
+    while (operationQueue.size >= MAX_CONCURRENT_OPERATIONS) {
+      await Promise.race(operationQueue.values());
+    }
+
+    const promise = operation().finally(() => operationQueue.delete(key));
+    operationQueue.set(key, promise);
+    return promise;
+  }
+
   srcWatcher.on("unlink", async (absPath) => {
-    if (isTsLike(absPath)) {
-      await cleaner.removeEmittedForSource(absPath);
-    } else {
-      // If you want to mirror non-TS deletes too (assets),
-      // uncomment the next line:
-      // await rmIfExists(path.join(outDirAbs, path.relative(rootDirAbs, absPath)));
+    try {
+      await queuedOperation(absPath, async () => {
+        if (isTsLike(absPath)) {
+          await cleaner.removeEmittedForSource(absPath);
+        } else {
+          // Mirror non-TS deletes too (assets)
+          await rmIfExists(path.join(outDirAbs, path.relative(rootDirAbs, absPath)));
+        }
+      });
+    } catch (error) {
+      console.error(`[tsbuild] error handling file deletion ${absPath}: ${error}`);
     }
   });
 
   srcWatcher.on("unlinkDir", async (absDir) => {
-    await cleaner.removeOutDirForSourceDir(absDir);
+    try {
+      await cleaner.removeOutDirForSourceDir(absDir);
+    } catch (error) {
+      console.error(`[tsbuild] error handling directory deletion ${absDir}: ${error}`);
+    }
   });
+
+  // TypeScript compiler handles additions and changes automatically
 
   const shutdown = async () => {
     console.log("\n[tsbuild] shutting down...");
     try {
       srcWatcher.close();
-    } catch {}
+      console.log("[tsbuild] src watcher closed");
+    } catch (error) {
+      console.error(`[tsbuild] error closing src watcher: ${error}`);
+    }
     try {
       tscWatch.kill();
-    } catch {}
+      console.log("[tsbuild] tsc watcher killed");
+    } catch (error) {
+      console.error(`[tsbuild] error killing tsc watcher: ${error}`);
+    }
     try {
       aliasWatch.kill();
-    } catch {}
+      console.log("[tsbuild] tsc-alias watcher killed");
+    } catch (error) {
+      console.error(`[tsbuild] error killing tsc-alias watcher: ${error}`);
+    }
+    process.exit(0);
   };
 
   process.on("SIGINT", shutdown);
