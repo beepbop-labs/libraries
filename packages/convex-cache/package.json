@@ -1,0 +1,47 @@
+{
+  "name": "@bb-labs/convex-cache",
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/convex-cache/index.js",
+    "./core/*": "./dist/convex-cache/core/*.js",
+    "./react": "./dist/convex-cache/adapters/react/index.js",
+    "./next": "./dist/convex-cache/adapters/next/index.js",
+    "./next/server": "./dist/convex-cache/adapters/next/server.js",
+    "./validation": "./dist/validation/index.js"
+  },
+  "bin": {
+    "convex-cache": "dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "bldr",
+    "dev": "bldr -w",
+    "clean": "rm -rf node_modules bun.lock dist"
+  },
+  "dependencies": {
+    "@bb-labs/bldr": "^0.0.15",
+    "@bb-labs/deep-equal": "^0.0.1",
+    "@bb-labs/deep-sort": "^0.0.1",
+    "@bb-labs/local-db": "^0.0.1",
+    "@bb-labs/tsconfigs": "^0.0.3",
+    "commander": "^14.0.2",
+    "convex": "^1.29.3",
+    "convex-helpers": "^0.1.106",
+    "fast-glob": "^3.3.3",
+    "superjson": "^2.2.6",
+    "zod": "^4.1.13"
+  },
+  "peerDependencies": {
+    "next": "^16.0.4",
+    "react": "^19"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.9.3"
+  }
+}
