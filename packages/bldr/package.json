@@ -20,6 +20,7 @@
     "@types/node": "latest"
   },
   "peerDependencies": {
+    "tsc-alias": "^1.8.8",
     "typescript": "^5"
   },
   "dependencies": {
