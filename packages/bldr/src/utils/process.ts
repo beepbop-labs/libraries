@@ -1,4 +1,92 @@
-import { spawn, type ChildProcess } from "node:child_process";
+import { spawn, spawnSync, type ChildProcess } from "node:child_process";
+import * as readline from "node:readline";
+
+/**
+ * Checks if a command is available in the PATH.
+ */
+function commandExists(cmd: string): boolean {
+  const result = spawnSync("which", [cmd], { stdio: "pipe" });
+  return result.status === 0;
+}
+
+/**
+ * Prompts the user for yes/no input. Defaults to yes on empty input.
+ */
+async function promptYesNo(question: string): Promise<boolean> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(`${question} [Y/n]: `, (answer) => {
+      rl.close();
+      const normalized = answer.trim().toLowerCase();
+      // Empty or 'y' or 'yes' = true, anything else = false
+      resolve(normalized === "" || normalized === "y" || normalized === "yes");
+    });
+  });
+}
+
+/**
+ * Installs missing dependencies using bun.
+ */
+async function installDeps(deps: string[]): Promise<void> {
+  console.log(`\n📦 Installing: ${deps.join(", ")}...\n`);
+
+  return new Promise((resolve, reject) => {
+    const child = spawn("bun", ["add", "-d", ...deps], {
+      stdio: "inherit",
+      shell: true,
+    });
+
+    child.on("exit", (code) => {
+      if (code === 0) {
+        console.log("\n✅ Dependencies installed successfully!\n");
+        resolve();
+      } else {
+        reject(new Error(`Failed to install dependencies (exit code ${code})`));
+      }
+    });
+
+    child.on("error", (error) => {
+      reject(new Error(`Failed to run bun: ${error.message}`));
+    });
+  });
+}
+
+/**
+ * Checks if required dependencies (tsc, tsc-alias) are available.
+ * If not, prompts the user to install them.
+ * Returns true if dependencies are available, false if user declined to install.
+ */
+export async function checkDependencies(): Promise<boolean> {
+  const missing: string[] = [];
+
+  if (!commandExists("tsc")) {
+    missing.push("typescript");
+  }
+
+  if (!commandExists("tsc-alias")) {
+    missing.push("tsc-alias");
+  }
+
+  if (missing.length === 0) {
+    return true;
+  }
+
+  console.log(`\n⚠️  Missing required dependencies: ${missing.join(", ")}`);
+
+  const shouldInstall = await promptYesNo("Would you like to install them now?");
+
+  if (shouldInstall) {
+    await installDeps(missing);
+    return true;
+  }
+
+  console.log(`\n❌ Please install missing dependencies manually:\n   bun add -d ${missing.join(" ")}\n`);
+  return false;
+}
 
 /**
  * Runs a command and returns a promise that resolves when the command finishes.

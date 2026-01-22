@@ -1,8 +1,15 @@
 #!/usr/bin/env bun
 import { parseArgs } from "./utils/args.js";
 import { build } from "./core/builder.js";
+import { checkDependencies } from "./utils/process.js";
 
 async function main() {
+  // Check if required dependencies are installed
+  const depsOk = await checkDependencies();
+  if (!depsOk) {
+    process.exit(1);
+  }
+
   const args = parseArgs(process.argv.slice(2));
   await build(args);
 }
