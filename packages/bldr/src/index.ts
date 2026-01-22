@@ -270,24 +270,55 @@ async function main() {
 
   const shutdown = async () => {
     console.log("\n[bldr] shutting down...");
+
+    // Close file watcher
     try {
-      srcWatcher.close();
+      await srcWatcher.close();
       console.log("[bldr] src watcher closed");
     } catch (error) {
       console.error(`[bldr] error closing src watcher: ${error}`);
     }
-    try {
-      tscWatch.kill();
-      console.log("[bldr] tsc watcher killed");
-    } catch (error) {
-      console.error(`[bldr] error killing tsc watcher: ${error}`);
+
+    // Kill child processes
+    const killPromises: Promise<void>[] = [];
+
+    if (!tscWatch.killed) {
+      killPromises.push(
+        new Promise<void>((resolve) => {
+          tscWatch.on("exit", () => resolve());
+          tscWatch.kill();
+          // Force kill after 5 seconds
+          setTimeout(() => {
+            if (!tscWatch.killed) {
+              tscWatch.kill("SIGKILL");
+            }
+            resolve();
+          }, 5000);
+        }),
+      );
+      console.log("[bldr] killing tsc watcher...");
     }
-    try {
-      aliasWatch.kill();
-      console.log("[bldr] tsc-alias watcher killed");
-    } catch (error) {
-      console.error(`[bldr] error killing tsc-alias watcher: ${error}`);
+
+    if (!aliasWatch.killed) {
+      killPromises.push(
+        new Promise<void>((resolve) => {
+          aliasWatch.on("exit", () => resolve());
+          aliasWatch.kill();
+          // Force kill after 5 seconds
+          setTimeout(() => {
+            if (!aliasWatch.killed) {
+              aliasWatch.kill("SIGKILL");
+            }
+            resolve();
+          }, 5000);
+        }),
+      );
+      console.log("[bldr] killing tsc-alias watcher...");
     }
+
+    // Wait for all child processes to exit
+    await Promise.all(killPromises);
+    console.log("[bldr] all processes cleaned up");
     process.exit(0);
   };
 
