@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "skipLibCheck": true,
+
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+
+    "resolveJsonModule": true,
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "forceConsistentCasingInFileNames": true
+  }
+}

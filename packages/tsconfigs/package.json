@@ -1,0 +1,12 @@
+{
+  "name": "@bb-labs/tsconfigs",
+  "version": "0.0.0",
+  "exports": {
+    "./base.json": "./src/base.json",
+    "./lib.json": "./src/lib.json",
+    "./app.json": "./src/app.json"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
