@@ -38,7 +38,6 @@
         "@bb-labs/tsconfigs": "^0.0.2",
       },
       "devDependencies": {
-        "@bb-labs/bldr": "file:/Users/amandahiya/Projects/beepbop/libraries/packages/bldr",
         "@types/bun": "latest",
         "@types/node": "^25.0.10",
       },
