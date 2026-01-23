@@ -82,7 +82,7 @@
       "version": "0.0.0",
       "dependencies": {
         "@bb-labs/bldr": "^0.0.16",
-        "@bb-labs/deep-sort": "^0.0.1",
+        "@bb-labs/deep-sort": "workspace",
         "@bb-labs/tsconfigs": "^0.0.4",
         "fast-deep-equal": "^3.1.3",
         "superjson": "^2.2.6",
@@ -522,8 +522,6 @@
     "@bb-labs/convex-helpers/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.4", "", {}, "sha512-e6wq6ih5hrYO7wALvKNiAqckk2NlLklxQUcO2QsVaCZ1E6G+0+Wea17Szfw+2ppYc5gKhCYNdOAwHW5NjnauwQ=="],
 
     "@bb-labs/deep-equal/@bb-labs/bldr": ["@bb-labs/bldr@0.0.16", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-aIPJcOc8ZgPXIav4syJmEYuBo3tltDaJzAbtWEiGNNfejuRrVqZFiYDCbGGvjPjOGWBWqBAmXifNbWEavpCykg=="],
-
-    "@bb-labs/deep-equal/@bb-labs/deep-sort": ["@bb-labs/deep-sort@0.0.1", "", { "dependencies": { "@tamtamchik/json-deep-sort": "^1.4.1", "superjson": "^2.2.6" }, "peerDependencies": { "typescript": "^5" } }, "sha512-csu0mICeVGAjOo2ERNv+icegp+A+CirdQTTnJtyuDCL9VXsHsArFby3aKsGt/KM93Zl8XeO7/gJ2WN9XPsAhgg=="],
 
     "@bb-labs/deep-equal/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.4", "", {}, "sha512-e6wq6ih5hrYO7wALvKNiAqckk2NlLklxQUcO2QsVaCZ1E6G+0+Wea17Szfw+2ppYc5gKhCYNdOAwHW5NjnauwQ=="],
 
