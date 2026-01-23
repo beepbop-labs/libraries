@@ -1,0 +1,26 @@
+{
+  "name": "@bb-labs/convex-helpers",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beepbop-labs/libraries.git"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "bldr",
+    "dev": "bldr -w",
+    "clean": "rm -rf node_modules bun.lock dist"
+  },
+  "dependencies": {
+    "@bb-labs/bldr": "^0.0.16",
+    "@bb-labs/tsconfigs": "^0.0.4",
+    "convex": "^1.31.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsc-alias": "^1.8.16"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
