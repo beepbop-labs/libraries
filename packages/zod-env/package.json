@@ -1,6 +1,10 @@
 {
   "name": "@bb-labs/zod-env",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beepbop-labs/libraries.git"
+  },
   "main": "dist/index.js",
   "files": [
     "dist"

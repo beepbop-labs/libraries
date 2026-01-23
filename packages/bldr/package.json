@@ -1,6 +1,10 @@
 {
   "name": "@bb-labs/bldr",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beepbop-labs/libraries.git"
+  },
   "type": "module",
   "bin": {
     "bldr": "./dist/index.js"

@@ -1,6 +1,10 @@
 {
   "name": "@bb-labs/tsconfigs",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beepbop-labs/libraries.git"
+  },
   "exports": {
     "./base.json": "./src/base.json",
     "./lib.json": "./src/lib.json",

@@ -33,9 +33,9 @@ The client cache stores query results in IndexedDb, enabling instant page loads.
 
 <a aria-label="Client Cache Flowchart" href="https://github.com/bigbang-sdk/convex-cache">
   <picture>
-    <source srcset="https://raw.githubusercontent.com/bigbang-sdk/convex-cache/refs/heads/main/assets/flowchart/client-cache-dark.png" media="(prefers-color-scheme: dark)" />
-    <source srcset="https://raw.githubusercontent.com/bigbang-sdk/convex-cache/refs/heads/main/assets/flowchart/client-cache-light.png" media="(prefers-color-scheme: light)" />
-    <img src="https://raw.githubusercontent.com/bigbang-sdk/convex-cache/refs/heads/main/assets/flowchart/client-cache-light.png" alt="Client Cache Flowchart" referrerpolicy="no-referrer-when-downgrade" />
+    <source srcset="https://raw.githubusercontent.com/beepbop-labs/libraries/refs/heads/main/packages/convex-cache/assets/flowchart/client-cache-dark.png" media="(prefers-color-scheme: dark)" />
+    <source srcset="https://raw.githubusercontent.com/beepbop-labs/libraries/refs/heads/main/packages/convex-cache/assets/flowchart/client-cache-light.png" media="(prefers-color-scheme: light)" />
+    <img src="https://raw.githubusercontent.com/beepbop-labs/libraries/refs/heads/main/packages/convex-cache/assets/flowchart/client-cache-light.png" alt="Client Cache Flowchart" referrerpolicy="no-referrer-when-downgrade" />
   </picture>
 </a>
 
@@ -60,9 +60,9 @@ The server cache (with Next.js) leverages Next.js's native caching system, integ
 
 <a aria-label="Server Cache Flowchart" href="https://github.com/bigbang-sdk/convex-cache">
   <picture>
-    <source srcset="https://raw.githubusercontent.com/bigbang-sdk/convex-cache/refs/heads/main/assets/flowchart/server-cache-dark.png" media="(prefers-color-scheme: dark)" />
-    <source srcset="https://raw.githubusercontent.com/bigbang-sdk/convex-cache/refs/heads/main/assets/flowchart/server-cache-light.png" media="(prefers-color-scheme: light)" />
-    <img src="https://raw.githubusercontent.com/bigbang-sdk/convex-cache/refs/heads/main/assets/flowchart/server-cache-light.png" alt="Server Cache Flowchart" referrerpolicy="no-referrer-when-downgrade" />
+    <source srcset="https://raw.githubusercontent.com/beepbop-labs/libraries/refs/heads/main/packages/convex-cache/assets/flowchart/server-cache-dark.png" media="(prefers-color-scheme: dark)" />
+    <source srcset="https://raw.githubusercontent.com/beepbop-labs/libraries/refs/heads/main/packages/convex-cache/assets/flowchart/server-cache-light.png" media="(prefers-color-scheme: light)" />
+    <img src="https://raw.githubusercontent.com/beepbop-labs/libraries/refs/heads/main/packages/convex-cache/assets/flowchart/server-cache-light.png" alt="Server Cache Flowchart" referrerpolicy="no-referrer-when-downgrade" />
   </picture>
 </a>
 
