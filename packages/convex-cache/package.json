@@ -1,6 +1,7 @@
 {
   "name": "@bb-labs/convex-cache",
   "version": "0.0.0",
+  "npm": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/beepbop-labs/libraries.git"
