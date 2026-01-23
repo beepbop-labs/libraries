@@ -32,7 +32,6 @@ This helper does two important things:
 
 1. Runs values through **SuperJSON** so things like `Date`, `BigInt`, `Map`, `Set`, etc. end up in a consistent, JSON-safe shape.
 2. **Recursively normalizes** that shape:
-
    - Arrays are **sorted** by their JSON representation → order no longer matters.
    - Object keys are **sorted** so key order never affects equality.
 
@@ -48,7 +47,7 @@ Deep equality check with:
 
 - SuperJSON-aware serialization
 - Order-insensitive arrays
-- Stable object key orderingg
+- Stable object key ordering
 
 ```ts
 import { isDeepEqual } from "@bigbang-sdk/local-db";
