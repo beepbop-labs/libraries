@@ -14,7 +14,7 @@ export async function build(args: Args) {
   if (!cfg.outDir || !cfg.rootDir) {
     throw new Error(
       [
-        `❌ tsconfig must specify both "compilerOptions.outDir" and "compilerOptions.rootDir" for dist sync.`,
+        `❌ tsconfig must specify both "compilerOptions.outDir" and "compilerOptions.rootDir" for dist sync`,
         `Found: rootDir=${String(cfg.rootDir)} outDir=${String(cfg.outDir)}`,
         `File: ${tsconfigPath}`,
       ].join("\n"),
