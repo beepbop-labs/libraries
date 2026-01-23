@@ -1,0 +1,38 @@
+name: release-deep-equal
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump-level:
+        description: "Version bump level"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
+      force-publish:
+        description: "Skip change detection and always publish"
+        type: boolean
+        default: false
+  push:
+    branches:
+      - main
+      - dev
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  release:
+    uses: beepbop-labs/github-actions/.github/workflows/npm-release-turborepo.yml@main
+    with:
+      package-dir: packages/deep-equal
+      bump-level: ${{ inputs.bump-level || 'patch' }}
+      force-publish: ${{ inputs.force-publish || false }}
+      access: public
+    secrets:
+      npm-token: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,31 @@
+{
+  "name": "@bb-labs/deep-equal",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beepbop-labs/libraries.git"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bldr",
+    "dev": "bldr -w",
+    "clean": "rm -rf node_modules bun.lock dist"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsc-alias": "^1.8.16"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@bb-labs/bldr": "^0.0.16",
+    "@bb-labs/deep-sort": "^0.0.1",
+    "@bb-labs/tsconfigs": "^0.0.4",
+    "fast-deep-equal": "^3.1.3",
+    "superjson": "^2.2.6"
+  }
+}
