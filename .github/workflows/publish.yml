@@ -1,4 +1,4 @@
-name: release-convex-helpers
+name: publish
 
 on:
   workflow_dispatch:
@@ -27,10 +27,10 @@ permissions:
   statuses: write
 
 jobs:
-  release:
-    uses: beepbop-labs/github-actions/.github/workflows/npm-release-turborepo.yml@main
+  publish:
+    uses: beepbop-labs/github-actions/.github/workflows/npm-publish.yml@main
     with:
-      package-dir: packages/convex-helpers
+      route: "turborepo-workspace"
       bump-level: ${{ inputs.bump-level || 'patch' }}
       force-publish: ${{ inputs.force-publish || false }}
       access: public

@@ -14,7 +14,7 @@ export async function build(args: Args) {
   if (!cfg.outDir || !cfg.rootDir) {
     throw new Error(
       [
-        `tsconfig must specify both "compilerOptions.outDir" and "compilerOptions.rootDir" for dist sync.`,
+        `❌ tsconfig must specify both "compilerOptions.outDir" and "compilerOptions.rootDir" for dist sync.`,
         `Found: rootDir=${String(cfg.rootDir)} outDir=${String(cfg.outDir)}`,
         `File: ${tsconfigPath}`,
       ].join("\n"),
@@ -36,20 +36,20 @@ export async function build(args: Args) {
       state.ui = undefined;
     }
 
-    console.log("\n■ shutting down...");
+    console.log("\n⏳ Shutting down...");
 
     try {
       if (state.watcher) {
         await state.watcher.close();
       }
-      console.log("✓ src watcher closed");
+      console.log("✅ Src watcher closed");
     } catch (error) {
-      console.error(`✗ error closing src watcher: ${error}`);
+      console.error(`❌ Error closing src watcher: ${error}`);
     }
 
     const killProcess = (name: string, p: any) => {
       if (p && !p.killed) {
-        console.log(`↻ killing ${name}...`);
+        console.log(`🔄 Killing ${name}...`);
         p.kill();
         return new Promise<void>((resolve) => {
           const timeout = setTimeout(() => {
@@ -67,7 +67,7 @@ export async function build(args: Args) {
 
     await Promise.all([killProcess("tsc", state.tsc), killProcess("tsc-alias", state.alias)]);
 
-    console.log("✓ all processes cleaned up");
+    console.log("✅ All processes cleaned up");
     process.exit(code);
   };
 
@@ -83,35 +83,35 @@ export async function build(args: Args) {
     };
 
     console.error = (...args: any[]) => {
-      state.ui?.logToBldr(`{red-fg}✗ ${args.join(" ")}{/red-fg}`);
+      state.ui?.logToBldr(`{red-fg}❌ ${args.join(" ")}{/red-fg}`);
     };
   }
 
-  const prefix = args.watch ? "" : "[bldr] ";
   console.log(
     [
-      `\n${prefix}• project: ${rel(cwd, tsconfigPath)}`,
-      `${prefix}→ rootDir : ${rel(cwd, rootDirAbs)}`,
-      `${prefix}→ outDir  : ${rel(cwd, outDirAbs)}`,
-      `${prefix}▶ mode    : ${args.watch ? "watch" : "build"}\n`,
+      `\n📦 Project  : ${rel(cwd, tsconfigPath)}`,
+      `📁 Root Dir : ${rel(cwd, rootDirAbs)}`,
+      `📁 Out Dir  : ${rel(cwd, outDirAbs)}`,
+      `➡️  Mode     : ${args.watch ? "Watch" : "Build"}\n`,
     ].join("\n"),
   );
 
-  console.log(`⌫ cleaning output directory...`);
+  console.log(`📦 Cleaning output directory...`);
   await rmIfExists(outDirAbs);
-  console.log(`✓ output directory cleaned`);
+  console.log(`✅ Output directory cleaned`);
 
   const tscArgs = ["-p", tsconfigPath, "--pretty"];
   const aliasArgs = ["-p", tsconfigPath];
 
   if (!args.watch) {
     try {
-      console.log(`▶ starting build...`);
+      console.log(`\n📦 Starting build...`);
       await run("tsc", tscArgs, cwd);
       await run("tsc-alias", aliasArgs, cwd);
-      console.log(`✓ [bldr] build completed successfully!`);
+
+      console.log(`✅ Build completed successfully!`);
     } catch (error) {
-      console.error(`build failed, cleaning output directory...`);
+      console.error(`❌ Build failed, cleaning output directory...`);
       await rmIfExists(outDirAbs);
       throw error;
     }
@@ -120,13 +120,13 @@ export async function build(args: Args) {
 
   // Watch mode initial pass
   try {
-    console.log(`▶ starting initial build...`);
+    console.log(`\n📦 Starting initial build...`);
     await run("tsc", tscArgs, cwd);
     await run("tsc-alias", aliasArgs, cwd);
-    console.log(`✓ initial build completed`);
+    console.log(`✅ Initial build completed`);
   } catch (error) {
     if (state.ui) {
-      state.ui.tscBox.insertBottom(`{red-fg}✗ initial build failed: ${(error as Error).message}{/red-fg}`);
+      state.ui.tscBox.insertBottom(`❌ Initial build failed: ${(error as Error).message}{/red-fg}`);
       state.ui.tscBox.setScrollPerc(100);
       state.ui.screen.render();
     }
@@ -150,14 +150,14 @@ export async function build(args: Args) {
     p.stderr?.on("data", handleData);
     p.on("error", (error: any) => {
       if (state.ui) {
-        box.insertBottom(`{red-fg}✗ ${error}{/red-fg}`);
+        box.insertBottom(`❌ ${error}{/red-fg}`);
         box.setScrollPerc(100);
         state.ui.screen.render();
       }
     });
     p.on("exit", (code: number) => {
       if (code !== 0 && code !== null) {
-        console.error(`${p === state.tsc ? "tsc" : "tsc-alias"} exited with code ${code}`);
+        console.error(`❌ ${p === state.tsc ? "tsc" : "tsc-alias"} exited with code ${code}`);
       }
       // If one of them exits unexpectedly in watch mode, we might want to shut down or restart
       // For now, let's just shut down if it's not a normal exit
@@ -202,24 +202,24 @@ export async function build(args: Args) {
       await queuedOperation(absPath, async () => {
         if (isTsLike(absPath)) {
           await cleaner.removeEmittedForSource(absPath);
-          console.log(`- sync: removed output for ${path.relative(rootDirAbs, absPath)}`);
+          console.log(`🔄 Sync: removed output for ${path.relative(rootDirAbs, absPath)}`);
         } else {
           const outPath = path.join(outDirAbs, path.relative(rootDirAbs, absPath));
           await rmIfExists(outPath);
-          console.log(`- sync: removed asset ${path.relative(rootDirAbs, absPath)}`);
+          console.log(`🔄 Sync: removed asset ${path.relative(rootDirAbs, absPath)}`);
         }
       });
     } catch (error) {
-      console.error(`error handling file deletion ${absPath}: ${error}`);
+      console.error(`❌ Error handling file deletion ${absPath}: ${error}`);
     }
   });
 
   srcWatcher.on("unlinkDir", async (absDir: string) => {
     try {
       await cleaner.removeOutDirForSourceDir(absDir);
-      console.log(`- sync: removed directory ${path.relative(rootDirAbs, absDir)}`);
+      console.log(`🔄 Sync: removed directory ${path.relative(rootDirAbs, absDir)}`);
     } catch (error) {
-      console.error(`error handling directory deletion ${absDir}: ${error}`);
+      console.error(`❌ Error handling directory deletion ${absDir}: ${error}`);
     }
   });
 }

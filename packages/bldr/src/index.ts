@@ -4,6 +4,8 @@ import { build } from "./core/builder.js";
 import { checkDependencies } from "./utils/process.js";
 
 async function main() {
+  console.log("------------- bldr -------------");
+  console.log("📦 Initializing...");
   // Check if required dependencies are installed
   const depsOk = await checkDependencies();
   if (!depsOk) {
