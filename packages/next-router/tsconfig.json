@@ -1,0 +1,13 @@
+{
+  "extends": "@bb-labs/tsconfigs/lib.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+
+    "outDir": "dist",
+    "rootDir": "src",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}
