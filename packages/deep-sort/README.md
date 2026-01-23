@@ -58,4 +58,4 @@ deepSort([
 
 - Sorting arrays by SuperJSON string is deterministic but may be expensive for very large/nested data.
 - Circular references are **not supported** (SuperJSON cannot serialize them).
-- This is intended for **cache key normalization**, **equality pre-normalization**, and **stable hashing** — not for mutating live data structuress.
+- This is intended for **cache key normalization**, **equality pre-normalization**, and **stable hashing** — not for mutating live data structuresss.
