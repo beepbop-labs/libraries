@@ -17,4 +17,4 @@ A collection of reusable packages for Beepbop projects.
 
 ### Usage
 
-These packages are meant for Beepbop's internal usage and do not follow semantic versioning. Expect breaking changes across updates. However, they are open sourced and can be used by anyone for their own projectss.
+These packages are meant for Beepbop's internal usage and do not follow semantic versioning. Expect breaking changes across updates. However, they are open sourced and can be used by anyone for their own projects.
