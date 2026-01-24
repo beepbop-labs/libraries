@@ -38,11 +38,9 @@
         "convex-cache": "dist/cli/index.js",
       },
       "dependencies": {
-        "@bb-labs/bldr": "^0.0.15",
         "@bb-labs/deep-equal": "workspace:*",
         "@bb-labs/deep-sort": "workspace:*",
         "@bb-labs/local-db": "workspace:*",
-        "@bb-labs/tsconfigs": "workspace:*",
         "commander": "^14.0.2",
         "convex": "^1.29.3",
         "convex-helpers": "^0.1.106",
@@ -51,6 +49,8 @@
         "zod": "^4.1.13",
       },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/tsconfigs": "workspace:*",
         "@types/node": "^24.10.1",
         "@types/react": "^19.2.7",
         "tsc-alias": "^1.8.16",
@@ -65,11 +65,11 @@
       "name": "@bb-labs/convex-helpers",
       "version": "0.0.0",
       "dependencies": {
-        "@bb-labs/bldr": "^0.0.16",
-        "@bb-labs/tsconfigs": "workspace:*",
         "convex": "^1.31.2",
       },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/tsconfigs": "workspace:*",
         "@types/bun": "latest",
         "tsc-alias": "^1.8.16",
       },
@@ -81,13 +81,13 @@
       "name": "@bb-labs/deep-equal",
       "version": "0.0.0",
       "dependencies": {
-        "@bb-labs/bldr": "^0.0.16",
-        "@bb-labs/deep-sort": "workspace:*",
         "@bb-labs/tsconfigs": "workspace:*",
         "fast-deep-equal": "^3.1.3",
         "superjson": "^2.2.6",
       },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/deep-sort": "workspace:*",
         "@types/bun": "latest",
         "tsc-alias": "^1.8.16",
       },
@@ -99,12 +99,12 @@
       "name": "@bb-labs/deep-sort",
       "version": "0.0.0",
       "dependencies": {
-        "@bb-labs/bldr": "workspace:*",
-        "@bb-labs/tsconfigs": "workspace:*",
         "@tamtamchik/json-deep-sort": "^1.4.1",
         "superjson": "^2.2.6",
       },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/tsconfigs": "workspace:*",
         "@types/bun": "latest",
         "tsc-alias": "^1.8.16",
       },
@@ -116,14 +116,14 @@
       "name": "@bb-labs/local-db",
       "version": "0.0.0",
       "dependencies": {
-        "@bb-labs/bldr": "^0.0.16",
         "@bb-labs/deep-equal": "workspace:*",
-        "@bb-labs/tsconfigs": "workspace:*",
         "fast-deep-equal": "^3.1.3",
         "idb-keyval": "^6.2.2",
         "zod": "^4.1.12",
       },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/tsconfigs": "workspace:*",
         "@types/bun": "latest",
         "@types/react": "^19.2.7",
         "tsc-alias": "^1.8.16",
@@ -137,11 +137,11 @@
       "name": "@bb-labs/next-router",
       "version": "0.0.0",
       "dependencies": {
-        "@bb-labs/bldr": "^0.0.16",
-        "@bb-labs/tsconfigs": "workspace:*",
         "zod": "^4.2.1",
       },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/tsconfigs": "workspace:*",
         "@types/bun": "latest",
         "@types/react": "^19.2.7",
         "tsc-alias": "^1.8.16",
@@ -155,11 +155,9 @@
     "packages/pkce": {
       "name": "@bb-labs/pkce",
       "version": "0.0.0",
-      "dependencies": {
-        "@bb-labs/bldr": "0.0.14",
-        "@bb-labs/tsconfigs": "workspace:*",
-      },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/tsconfigs": "workspace:*",
         "@types/bun": "latest",
         "@types/node": "^25.0.10",
         "tsc-alias": "^1.8.16",
@@ -178,11 +176,9 @@
     "packages/zod-env": {
       "name": "@bb-labs/zod-env",
       "version": "0.0.0",
-      "dependencies": {
-        "@bb-labs/bldr": "^0.0.15",
-        "@bb-labs/tsconfigs": "workspace:*",
-      },
       "devDependencies": {
+        "@bb-labs/bldr": "workspace:*",
+        "@bb-labs/tsconfigs": "workspace:*",
         "@types/bun": "latest",
         "@types/node": "^25.0.3",
         "tsc-alias": "^1.8.16",
@@ -451,8 +447,6 @@
 
     "react": ["react@19.2.3", "", {}, "sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA=="],
 
-    "react-dom": ["react-dom@19.2.3", "", { "dependencies": { "scheduler": "^0.27.0" }, "peerDependencies": { "react": "^19.2.3" } }, "sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg=="],
-
     "readdirp": ["readdirp@5.0.0", "", {}, "sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ=="],
 
     "resolve-pkg-maps": ["resolve-pkg-maps@1.0.0", "", {}, "sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw=="],
@@ -460,8 +454,6 @@
     "reusify": ["reusify@1.1.0", "", {}, "sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw=="],
 
     "run-parallel": ["run-parallel@1.2.0", "", { "dependencies": { "queue-microtask": "^1.2.2" } }, "sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA=="],
-
-    "scheduler": ["scheduler@0.27.0", "", {}, "sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q=="],
 
     "semver": ["semver@7.7.3", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q=="],
 
@@ -503,41 +495,13 @@
 
     "@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
 
-    "@bb-labs/convex-cache/@bb-labs/bldr": ["@bb-labs/bldr@0.0.15", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-mhHa9nxxdzOhQodlydfUOESGO2S1mCgnKHI//EpJYXKRB7k7zWFE5y0tusnSULCKG9kWB2OTb3jv+qw6SOyB0g=="],
-
     "@bb-labs/convex-cache/@types/node": ["@types/node@24.10.9", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-ne4A0IpG3+2ETuREInjPNhUGis1SFjv1d5asp8MzEAGtOZeTeHVDOYqOgqfhvseqg/iXty2hjBf1zAOb7RNiNw=="],
 
     "@bb-labs/convex-cache/typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
-    "@bb-labs/convex-helpers/@bb-labs/bldr": ["@bb-labs/bldr@0.0.16", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-aIPJcOc8ZgPXIav4syJmEYuBo3tltDaJzAbtWEiGNNfejuRrVqZFiYDCbGGvjPjOGWBWqBAmXifNbWEavpCykg=="],
-
-    "@bb-labs/deep-equal/@bb-labs/bldr": ["@bb-labs/bldr@0.0.16", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-aIPJcOc8ZgPXIav4syJmEYuBo3tltDaJzAbtWEiGNNfejuRrVqZFiYDCbGGvjPjOGWBWqBAmXifNbWEavpCykg=="],
-
-    "@bb-labs/local-db/@bb-labs/bldr": ["@bb-labs/bldr@0.0.16", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-aIPJcOc8ZgPXIav4syJmEYuBo3tltDaJzAbtWEiGNNfejuRrVqZFiYDCbGGvjPjOGWBWqBAmXifNbWEavpCykg=="],
-
-    "@bb-labs/next-router/@bb-labs/bldr": ["@bb-labs/bldr@0.0.16", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-aIPJcOc8ZgPXIav4syJmEYuBo3tltDaJzAbtWEiGNNfejuRrVqZFiYDCbGGvjPjOGWBWqBAmXifNbWEavpCykg=="],
-
-    "@bb-labs/pkce/@bb-labs/bldr": ["@bb-labs/bldr@0.0.14", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-KF3QyO4rMCf0YADecWf+SvGveyiSjqZQl+KfnQEtk/fS6GOsuSyutjL3xqg1gEcmS897VTXNxorgCnkEwYY/ow=="],
-
-    "@bb-labs/zod-env/@bb-labs/bldr": ["@bb-labs/bldr@0.0.15", "", { "dependencies": { "@bb-labs/tsconfigs": "^0.0.1", "blessed": "^0.1.81", "chokidar": "^5.0.0" }, "peerDependencies": { "tsc-alias": "^1.8.8", "typescript": "^5" }, "bin": { "bldr": "dist/index.js" } }, "sha512-mhHa9nxxdzOhQodlydfUOESGO2S1mCgnKHI//EpJYXKRB7k7zWFE5y0tusnSULCKG9kWB2OTb3jv+qw6SOyB0g=="],
-
     "tsc-alias/chokidar": ["chokidar@3.6.0", "", { "dependencies": { "anymatch": "~3.1.2", "braces": "~3.0.2", "glob-parent": "~5.1.2", "is-binary-path": "~2.1.0", "is-glob": "~4.0.1", "normalize-path": "~3.0.0", "readdirp": "~3.6.0" }, "optionalDependencies": { "fsevents": "~2.3.2" } }, "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw=="],
 
     "tsc-alias/commander": ["commander@9.5.0", "", {}, "sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ=="],
-
-    "@bb-labs/convex-cache/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
-
-    "@bb-labs/convex-helpers/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
-
-    "@bb-labs/deep-equal/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
-
-    "@bb-labs/local-db/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
-
-    "@bb-labs/next-router/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
-
-    "@bb-labs/pkce/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
-
-    "@bb-labs/zod-env/@bb-labs/bldr/@bb-labs/tsconfigs": ["@bb-labs/tsconfigs@0.0.1", "", {}, "sha512-7qB/053+kAsPxXldHICC7qbaWnYUME5xIHHnWEAk2VHDj/clVDafy4iYQpljEEb8QjBjYuq76AQ010uE6krLFg=="],
 
     "tsc-alias/chokidar/readdirp": ["readdirp@3.6.0", "", { "dependencies": { "picomatch": "^2.2.1" } }, "sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA=="],
   }

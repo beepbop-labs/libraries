@@ -21,11 +21,11 @@
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
-    "@bb-labs/bldr": "^0.0.16",
-    "@bb-labs/tsconfigs": "workspace:*",
     "zod": "^4.2.1"
   },
   "devDependencies": {
+    "@bb-labs/bldr": "workspace:*",
+    "@bb-labs/tsconfigs": "workspace:*",
     "@types/bun": "latest",
     "@types/react": "^19.2.7",
     "tsc-alias": "^1.8.16"

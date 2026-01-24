@@ -18,11 +18,10 @@
     "dev": "bldr -w",
     "clean": "rm -rf node_modules bun.lock dist"
   },
-  "dependencies": {
-    "@bb-labs/bldr": "0.0.14",
-    "@bb-labs/tsconfigs": "workspace:*"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@bb-labs/bldr": "workspace:*",
+    "@bb-labs/tsconfigs": "workspace:*",
     "@types/bun": "latest",
     "@types/node": "^25.0.10",
     "tsc-alias": "^1.8.16"
