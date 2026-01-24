@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@bb-labs/bldr": "^0.0.16",
-    "@bb-labs/tsconfigs": "^0.0.4",
+    "@bb-labs/tsconfigs": "workspace:*",
     "convex": "^1.31.2"
   },
   "devDependencies": {

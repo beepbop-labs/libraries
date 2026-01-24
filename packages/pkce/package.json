@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@bb-labs/bldr": "0.0.14",
-    "@bb-labs/tsconfigs": "^0.0.2"
+    "@bb-labs/tsconfigs": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",

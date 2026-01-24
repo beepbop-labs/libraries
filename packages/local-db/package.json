@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@bb-labs/bldr": "^0.0.16",
-    "@bb-labs/deep-equal": "^0.0.1",
-    "@bb-labs/tsconfigs": "^0.0.4",
+    "@bb-labs/deep-equal": "workspace:*",
+    "@bb-labs/tsconfigs": "workspace:*",
     "fast-deep-equal": "^3.1.3",
     "idb-keyval": "^6.2.2",
     "zod": "^4.1.12"

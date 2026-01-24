@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "@bb-labs/bldr": "^0.0.15",
-    "@bb-labs/tsconfigs": "^0.0.3"
+    "@bb-labs/tsconfigs": "workspace:*"
   }
 }

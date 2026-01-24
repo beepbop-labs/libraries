@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@bb-labs/bldr": "^0.0.16",
-    "@bb-labs/tsconfigs": "^0.0.4",
+    "@bb-labs/tsconfigs": "workspace:*",
     "zod": "^4.2.1"
   },
   "devDependencies": {

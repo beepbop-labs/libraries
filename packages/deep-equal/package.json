@@ -25,7 +25,7 @@
   "dependencies": {
     "@bb-labs/bldr": "^0.0.16",
     "@bb-labs/deep-sort": "workspace:*",
-    "@bb-labs/tsconfigs": "^0.0.4",
+    "@bb-labs/tsconfigs": "workspace:*",
     "fast-deep-equal": "^3.1.3",
     "superjson": "^2.2.6"
   }
