@@ -37,4 +37,4 @@ bun add -d @bb-labs/bldr
 - **Split Terminal UI**: In watch mode, displays three panels side by side showing output from TypeScript compiler, tsc-alias, and bldr itself
 - **Clean Builds**: Always cleans output directory before building
 - **Path Alias Support**: Integrates with tsc-alias for path mapping
-- **Process Management**: Properly handles child process cleanup on exit
+- **Process Management**: Properly handles child process cleanup on exitt
