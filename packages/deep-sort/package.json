@@ -23,7 +23,7 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@bb-labs/bldr": "^0.0.15",
+    "@bb-labs/bldr": "workspace:*",
     "@bb-labs/tsconfigs": "workspace:*",
     "@tamtamchik/json-deep-sort": "^1.4.1",
     "superjson": "^2.2.6"
