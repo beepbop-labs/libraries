@@ -3,14 +3,6 @@ name: publish
 on:
   workflow_dispatch:
     inputs:
-      bump-level:
-        description: "Version bump level"
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
-        default: patch
       force-publish:
         description: "Skip change detection and always publish"
         type: boolean
@@ -31,7 +23,6 @@ jobs:
     uses: beepbop-labs/github-actions/.github/workflows/npm-publish.yml@main
     with:
       route: "turborepo-workspace"
-      bump-level: ${{ inputs.bump-level || 'patch' }}
       force-publish: ${{ inputs.force-publish || false }}
       access: public
     secrets:
