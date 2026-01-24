@@ -14,8 +14,8 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "bun run build",
-    "build": "tsc && chmod +x dist/index.js",
+    "build": "tsc",
+    "postbuild": "chmod +x dist/index.js && cd ../.. && bash scripts/link-bldr.sh",
     "test:build": "node dist/index.js --project test/tsconfig.json",
     "test:watch": "node dist/index.js --watch --project test/tsconfig.json",
     "clean": "rm -rf node_modules bun.lock dist"

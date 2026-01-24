@@ -7,8 +7,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "clean": "turbo run clean && rm -rf node_modules .turbo bun.lock",
-    "postinstall": "bash scripts/link-bldr.sh"
+    "clean": "turbo run clean && rm -rf node_modules .turbo bun.lock"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
