@@ -21,6 +21,7 @@
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "devDependencies": {
+    "@bb-labs/tsconfigs": "workspace:*",
     "@types/blessed": "^0.1.27",
     "@types/bun": "latest",
     "@types/node": "latest"
@@ -30,7 +31,6 @@
     "tsc-alias": "^1.8.8"
   },
   "dependencies": {
-    "@bb-labs/tsconfigs": "^0.0.1",
     "blessed": "^0.1.81",
     "chokidar": "^5.0.0"
   }
