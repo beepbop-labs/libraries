@@ -4,10 +4,7 @@
     "jsx": "react-jsx",
 
     "outDir": "dist",
-    "rootDir": "src",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "rootDir": "src"
   },
   "include": ["src"]
 }

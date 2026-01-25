@@ -11,12 +11,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "bldr",
-    "dev": "bldr -w",
+    "build": "tsc",
+    "dev": "tsc -w",
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "devDependencies": {
-    "@bb-labs/bldr": "workspace:*",
     "@bb-labs/deep-sort": "workspace:*",
     "@types/bun": "latest",
     "tsc-alias": "^1.8.16"

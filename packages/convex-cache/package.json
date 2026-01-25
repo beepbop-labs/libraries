@@ -22,8 +22,8 @@
     "convex-cache": "dist/cli/index.js"
   },
   "scripts": {
-    "build": "bldr",
-    "dev": "bldr -w",
+    "build": "tsc",
+    "dev": "tsc -w",
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
@@ -42,7 +42,6 @@
     "react": "^19"
   },
   "devDependencies": {
-    "@bb-labs/bldr": "workspace:*",
     "@bb-labs/tsconfigs": "workspace:*",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",

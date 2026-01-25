@@ -2,17 +2,8 @@
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "tui",
   "tasks": {
-    "//#link-bins": {
-      "dependsOn": ["@bb-labs/bldr#build"],
-      "cache": false
-    },
-    "@bb-labs/bldr#build": {
-      "dependsOn": [],
-      "inputs": ["$TURBO_DEFAULT$"],
-      "outputs": ["dist/**"]
-    },
     "build": {
-      "dependsOn": ["^build", "//#link-bins"],
+      "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
