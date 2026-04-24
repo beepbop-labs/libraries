@@ -13,14 +13,14 @@
     "clean": "rm -rf node_modules bun.lock dist"
   },
   "dependencies": {
-    "convex": "^1.31.2"
+    "convex": "^1.36.1"
   },
   "devDependencies": {
     "@bb-labs/tsconfigs": "workspace:*",
-    "@types/bun": "latest",
+    "@types/bun": "^1.3.13",
     "tsc-alias": "^1.8.16"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^6.0.3"
   }
 }
