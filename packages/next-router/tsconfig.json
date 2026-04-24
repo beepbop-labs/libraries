@@ -2,6 +2,7 @@
   "extends": "@bb-labs/tsconfigs/lib.json",
   "compilerOptions": {
     "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
 
     "outDir": "dist",
     "rootDir": "src"
